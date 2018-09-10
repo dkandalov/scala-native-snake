@@ -109,13 +109,13 @@ object Hello extends App {
 				Snake(cells = List(Cell(3, 0), Cell(2, 0), Cell(1, 0)), direction = Right))
 		}
 		def `apples grow at random locations`() {
-			val apples = Apples(20, 10, List(), 3, new Random(42))
+			val apples = Apples(20, 10, Set(), 3, new Random(42))
 			val newApples = apples.grow().grow().grow()
 			println(newApples.cells)
-			assert(newApples.cells == List(Cell(8,4), Cell(5,5)))
+			assert(newApples.cells == Set(Cell(8,4), Cell(5,5)))
 		}
 		def `snake eats an apple`() {
-			val apples = Apples(20, 10, List(Cell(2, 0)), 3, new Random(42))
+			val apples = Apples(20, 10, Set(Cell(2, 0)), 3, new Random(42))
 			val (newSnake, newApples) = snake.eat(apples)
 
 			println(newSnake.move().cells)
@@ -123,7 +123,7 @@ object Hello extends App {
 
 			assert(newSnake.eatenApples == 1)
 			assert(newSnake.move().cells == List(Cell(3, 0), Cell(2, 0), Cell(1, 0), Cell(0, 0)))
-			assert(newApples.cells == List())
+			assert(newApples.cells == Set())
 		}
 
 		`snake moves right`()
@@ -177,10 +177,10 @@ case class Snake(cells: List[Cell], direction: Direction, eatenApples: Int = 0) 
 	}
 }
 
-case class Apples(fieldWidth: Int, fieldHeight: Int, cells: List[Cell] = List(), growthSpeed: Int = 3, random: Random = Random) {
+case class Apples(fieldWidth: Int, fieldHeight: Int, cells: Set[Cell] = Set(), growthSpeed: Int = 3, random: Random = Random) {
 	def grow(): Apples = {
 		if (random.nextInt(growthSpeed) != 0) return this
-		copy(cells = cells :+ Cell(random.nextInt(fieldWidth), random.nextInt(fieldHeight)))
+		copy(cells = cells + Cell(random.nextInt(fieldWidth), random.nextInt(fieldHeight)))
 	}
 }
 
