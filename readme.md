@@ -2,7 +2,7 @@
 This is a minimal [snake game](https://en.wikipedia.org/wiki/Snake_(video_game_genre)) 
 with [ncurses](https://en.wikipedia.org/wiki/Ncurses) UI 
 written in [Scala Native](http://www.scala-native.org).
-It re-implements [Kotlin/Native snake](https://github.com/dkandalov/kotlin-native-snake),
+It re-implements [Kotlin/Native snake](https://github.com/dkandalov/kotlin-native-snake)
 to be able to compare Kotlin/Native and Scala Native interop with C. 
 
 
