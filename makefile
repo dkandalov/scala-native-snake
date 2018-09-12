@@ -1,14 +1,16 @@
+snake-path = ./target/scala-2.11/scala-native-snake-out
+
 compile-and-run:
-	sbt compile nativeLink && ./target/scala-2.11/scala-native-snake-out
+	sbt compile nativeLink && $(snake-path)
 
 compile:
 	sbt compile nativeLink
 
 test:
-	./target/scala-2.11/scala-native-snake-out --test
+	$(snake-path) --test
 
 run:
-	./target/scala-2.11/scala-native-snake-out
+	$(snake-path)
 
 valgrind-massif:
-	valgrind --tool=massif --massif-out-file=massif.out --time-unit=B ./target/scala-2.11/scala-native-snake-out && ms_print massif.out > massif.out.printed
+	valgrind --tool=massif --massif-out-file=massif.out --time-unit=B $(snake-path) && ms_print massif.out > massif.out.printed
