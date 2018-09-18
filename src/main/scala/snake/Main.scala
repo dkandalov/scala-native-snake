@@ -51,13 +51,13 @@ object Hello extends App {
 
 			val window = newwin(game.height + 2, game.width + 2, 0, 0)
 
-			var c = 0
-			while (c.toChar != 'q') {
+			var input = 0
+			while (input.toChar != 'q') {
 
 				draw(game, window)
 
-				c = wgetch(window)
-				val direction = c.toChar match {
+				input = wgetch(window)
+				val direction = input.toChar match {
 					case 'i' => Up
 					case 'j' => Left
 					case 'k' => Down
@@ -83,8 +83,8 @@ object Hello extends App {
 			mvwprintw(window, game.snake.head.y + 1, game.snake.head.x + 1, c"Q")
 
 			if (game.isOver) {
-				mvwprintw(window, 0, 3, c" Game is Over ")
-				mvwprintw(window, 1, 2, toCString(s" Your score is ${game.score} "))
+				mvwprintw(window, 0, 6, c"Game Over")
+				mvwprintw(window, 1, 3, toCString(s"Your score is ${game.score}"))
 			}
 
 			wrefresh(window)
