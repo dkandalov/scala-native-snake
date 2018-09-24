@@ -40,7 +40,7 @@ object Hello extends App {
 			initscr()
 			noecho()
 			curs_set(0)
-			halfdelay(3)
+			halfdelay(2)
 
 			var game = Game(
 				width = 20,
@@ -179,7 +179,7 @@ case class Snake(cells: List[Cell], direction: Direction, eatenApples: Int = 0) 
 
 case class Apples(fieldWidth: Int, fieldHeight: Int, cells: Set[Cell] = Set(), growthSpeed: Int = 3, random: Random = Random) {
 	def grow(): Apples = {
-		if (random.nextInt(growthSpeed) != 0) return this
+		if (random.nextInt(10) >= growthSpeed) return this
 		copy(cells = cells + Cell(random.nextInt(fieldWidth), random.nextInt(fieldHeight)))
 	}
 }
